@@ -5,6 +5,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.TextField;
 
 public class HomePage extends WebPage {
 	private static final long serialVersionUID = 1L;
@@ -13,6 +14,11 @@ public class HomePage extends WebPage {
 	private Label contadorLabel = null;
 	@SuppressWarnings("rawtypes")
 	private AjaxLink sumarContador = null;
+	private TextField nombre = null;
+	private TextField apellidoPaterno = null;
+	private TextField apellidoMaterno = null;
+	private TextField edad = null;
+	private TextField numeroDeTelefono = null;
 
 	public HomePage(final PageParameters parameters) {
 		super(parameters);
@@ -41,9 +47,8 @@ public class HomePage extends WebPage {
 			@Override
 			public void onClick(AjaxRequestTarget target) {
 				// TODO Auto-generated method stub
-				contadorModel = contadorModel + 1;
-				System.err.println("Nuevo valor de contadorModel:" + contadorModel);
-				contadorLabel.setDefaultModelObject(contadorModel);
+				contadorModel = contadorModel + 1; //Incrementamos la variable
+				contadorLabel.setDefaultModelObject(contadorModel); //Adjuntamos nuevamente la variable al componente Wicket
 				target.add(contadorLabel);				
 			}
 			
