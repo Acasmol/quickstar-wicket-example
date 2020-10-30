@@ -29,5 +29,7 @@ public class WicketApplication extends WebApplication
 		super.init();
 
 		// add your configuration here
+		getRequestCycleSettings().setResponseRequestEncoding("ISO-8859-1");
+		getMarkupSettings().setDefaultMarkupEncoding("ISO-8859-1");		
 	}
 }

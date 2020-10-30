@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Hibernate configuration file, here is we we set up hibernate db collection
+	and mapping between classes and database tables. -->
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--  Mapping configuration details between Customer class and customer table -->
+<hibernate-mapping package="com.quickstar.wicket.example.entity">
+	<class name="Persona" table="PERSONA">
+		<id name="numeroDePersona" column="NUMERO_DE_PERSONA" type="long">
+			<generator class="identity"/>
+		</id>
+		<property name="nombre" column="NOMBRE" type="string"/>
+		<property name="apellidoPaterno" column="APELLIDO_PATERNO"  type="string"/>
+		<property name="apellidoMaterno" column="APELLIDO_MATERNO"  type="string"/>
+		<property name="edad" column="EDAD"  type="int"/>
+		<property name="telefono" column="TELEFONO"  type="string"/>
+	</class>
+</hibernate-mapping>

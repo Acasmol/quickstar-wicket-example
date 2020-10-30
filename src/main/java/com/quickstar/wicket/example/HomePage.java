@@ -1,42 +1,60 @@
 package com.quickstar.wicket.example;
 
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+
+import com.quickstar.wicket.example.entity.Persona;
+import com.quickstar.wicket.example.entity.loadable.LoadablePersonaEntity;
+
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.IModel;
 
 public class HomePage extends WebPage {
 	private static final long serialVersionUID = 1L;
 	
+	//---------------------------------------------------------------------------------------------------------------------------------------------------	
 	private int contadorModel = 0;
 	private Label contadorLabel = null;
 	@SuppressWarnings("rawtypes")
 	private AjaxLink sumarContador = null;
+	//---------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	//---------------------------------------------------------------------------------------------------------------------------------------------------	
+	@SuppressWarnings("rawtypes")
 	private TextField nombre = null;
+	@SuppressWarnings("rawtypes")
 	private TextField apellidoPaterno = null;
+	@SuppressWarnings("rawtypes")
 	private TextField apellidoMaterno = null;
+	@SuppressWarnings("rawtypes")
 	private TextField edad = null;
+	@SuppressWarnings("rawtypes")
 	private TextField numeroDeTelefono = null;
+	private AjaxButton submitFormButton = null;
+	@SuppressWarnings("rawtypes")
+	private Form form = null;
+	private IModel<Persona> loadablePersonaEntity;	
+	//---------------------------------------------------------------------------------------------------------------------------------------------------	
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public HomePage(final PageParameters parameters) {
 		super(parameters);
 
 		// TODO Add your page's components here
-		contadorModel = 0;
-    }
-
-	@SuppressWarnings({ "rawtypes" })
-	@Override
-	protected void onInitialize() {
-		// TODO Auto-generated method stub
-		super.onInitialize();
+		
+		//---------------------------------------------------------------------------------------------------------------------------------------------------
 
 		//Crea un nuevo componente, asignandole a su contructor el wicket:id y el modelo
 		contadorLabel = new Label("contador", contadorModel);
 		contadorLabel.setOutputMarkupId(true); //Habilitamos que se muestre en el HTML final su ID para que sea visto por las peticiones AJAX
 		
+		//Crea un componente AjaxLink, el cual incrementará el contador al hacer click en él
 		sumarContador = new AjaxLink("sumarContador"){
 
 			/**
@@ -58,6 +76,78 @@ public class HomePage extends WebPage {
 		add(contadorLabel);
 		add(sumarContador);
 		
+		//---------------------------------------------------------------------------------------------------------------------------------------------------
+		
+		
+		//---------------------------------------------------------------------------------------------------------------------------------------------------		
+	
+		//Instanciamos un LoadableModel
+		loadablePersonaEntity = new LoadablePersonaEntity(0L);
+		
+		nombre = new TextField("nombre");
+		apellidoPaterno = new TextField("apellidoPaterno");
+		apellidoMaterno = new TextField("apellidoMaterno");
+		edad = new TextField("edad");
+		numeroDeTelefono = new TextField("numeroDeTelefono");
+		submitFormButton = new AjaxButton("submitFormButton", form)
+				{
+
+					/**
+					 * 
+					 */
+					private static final long serialVersionUID = -8104402537101025363L;
+
+					@Override
+					protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+						// TODO Auto-generated method stub
+						super.onSubmit(target, form);
+						System.err.println("Método 'onSubmit()' del componente submitFormButton");
+						System.err.println("Objeto Persona:" + loadablePersonaEntity.getObject().toString());
+					}
+					
+				};
+		
+		form = new Form("form",loadablePersonaEntity) {
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 5369608285028079465L;
+
+			@Override
+			protected void onInitialize() {
+				// TODO Auto-generated method stub
+				super.onInitialize();
+				//El LoadableModel instanciado anteriormente lo utilizamos para crear un CompundPropertyModel, de esta forma, hacemos que los valores
+				//de los componentes Wicket del formulario "se peguen" o "se transfieran" automaticamente al POJO que esta envuelto del Loadable Model
+				setModel(new CompoundPropertyModel(loadablePersonaEntity));
+			}
+
+			@Override
+			protected void onSubmit() {
+				// TODO Auto-generated method stub
+				super.onSubmit();
+				System.err.println("Método 'onSubmit()' del componente Form");
+				System.err.println("Objeto Persona:" + loadablePersonaEntity.getObject().toString());				
+			}
+			
+		};
+		
+		form.add(nombre);
+		form.add(apellidoPaterno);
+		form.add(apellidoMaterno);
+		form.add(edad);
+		form.add(numeroDeTelefono);
+		form.add(submitFormButton);
+		add(form);
+    }
+
+
+	@Override
+	protected void onInitialize() {
+		// TODO Auto-generated method stub
+		super.onInitialize();
+
 	}
 	
 	

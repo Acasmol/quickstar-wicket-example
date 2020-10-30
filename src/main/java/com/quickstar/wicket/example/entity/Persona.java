@@ -18,7 +18,7 @@ public class Persona implements Serializable {
 	 */
 	private static final long serialVersionUID = -8544427317819657839L;
 	private String nombre = null;
-	private String appellidoPaterno = null;
+	private String apellidoPaterno = null;
 	private String apellidoMaterno = null;
 	private Integer edad = null;
 	private String numeroDeTelefono = null;
@@ -41,11 +41,12 @@ public class Persona implements Serializable {
 	 * @param numeroDeTelefono
 	 * @param numeroDePersona
 	 */
-	private Persona(String nombre, String appellidoPaterno, String apellidoMaterno, Integer edad,
+	@SuppressWarnings("unused")
+	private Persona(String nombre, String apellidoPaterno, String apellidoMaterno, Integer edad,
 			String numeroDeTelefono, Long numeroDePersona) {
 		super();
 		this.nombre = nombre;
-		this.appellidoPaterno = appellidoPaterno;
+		this.apellidoPaterno = apellidoPaterno;
 		this.apellidoMaterno = apellidoMaterno;
 		this.edad = edad;
 		this.numeroDeTelefono = numeroDeTelefono;
@@ -72,16 +73,16 @@ public class Persona implements Serializable {
 	/**
 	 * @return the appellidoPaterno
 	 */
-	public String getAppellidoPaterno() {
-		return appellidoPaterno;
+	public String getApellidoPaterno() {
+		return apellidoPaterno;
 	}
 
 
 	/**
 	 * @param appellidoPaterno the appellidoPaterno to set
 	 */
-	public void setAppellidoPaterno(String appellidoPaterno) {
-		this.appellidoPaterno = appellidoPaterno;
+	public void setApellidoPaterno(String apellidoPaterno) {
+		this.apellidoPaterno = apellidoPaterno;
 	}
 
 
@@ -156,7 +157,7 @@ public class Persona implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Persona [nombre=" + nombre + ", appellidoPaterno=" + appellidoPaterno + ", apellidoMaterno="
+		return "Persona [nombre=" + nombre + ", appellidoPaterno=" + apellidoPaterno + ", apellidoMaterno="
 				+ apellidoMaterno + ", edad=" + edad + ", numeroDeTelefono=" + numeroDeTelefono + ", numeroDePersona="
 				+ numeroDePersona + "]";
 	}

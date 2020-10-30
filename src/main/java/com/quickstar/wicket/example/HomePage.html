@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:wicket="http://wicket.apache.org">
 	<head>
-		<meta charset="utf-8" />
 	</head>
 	<body>
 		<div>
 			<h1>Quickstar Wicket Example</h1>
 		</div>
 		<div>
+			<div style="padding-bottom: 3em;">
+				<div>
+					<h7>Contador: </h7>
+					<h9 wicket:id="contador"/>				
+				</div>
+				<div>
+					<input type="button" wicket:id="sumarContador" value="Sumar 1"/>
+				</div>
+			</div>				
 			<div>
-				<h7>Contador: </h7>
-				<h9 wicket:id="contador"/>				
-			</div>
-			<div>
-				<input type="button" wicket:id="sumarContador" value="Sumar 1"/>
-			</div>
-			<div>
-				<form>
+				<form wicket:id="form">
 					<div>
 						<h7>Nombre: </h7><input type="text" wicket:id="nombre"/>
 					</div>
@@ -30,10 +31,10 @@
 						<h7>Edad: </h7><input type="text" wicket:id="edad"/>
 					</div>
 					<div>
-						<h7>TelÃ©fono: </h7><input type="text" wicket:id="telefono"/>
+						<h7>Teléfono: </h7><input type="text" wicket:id="numeroDeTelefono"/>
 					</div>
 					<div>
-						<input type="submit" value="Guardar" wicket:id="guardar"/>
+						<input type="submit" value="Guardar" wicket:id="submitFormButton"/>
 					</div>														
 				</form>
 			</div>
