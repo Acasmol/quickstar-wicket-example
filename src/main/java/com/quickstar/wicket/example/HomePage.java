@@ -92,7 +92,7 @@ public class HomePage extends WebPage {
 		apellidoPaterno = new TextField("apellidoPaterno");
 		apellidoMaterno = new TextField("apellidoMaterno");
 		edad = new TextField("edad");
-		numeroDeTelefono = new TextField("numeroDeTelefono");
+		numeroDeTelefono = new TextField("numeroDeTelefono"); 
 		submitFormButton = new AjaxButton("submitFormButton", form)
 				{
 
