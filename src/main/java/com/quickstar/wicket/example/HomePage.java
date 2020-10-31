@@ -2,6 +2,8 @@ package com.quickstar.wicket.example;
 
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
+import com.quickstar.wicket.entity.dao.impl.HibernatePersonaDAO;
+import com.quickstar.wicket.example.enity.dao.PersonaDAO;
 import com.quickstar.wicket.example.entity.Persona;
 import com.quickstar.wicket.example.entity.loadable.LoadablePersonaEntity;
 
@@ -12,6 +14,7 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 
@@ -40,7 +43,8 @@ public class HomePage extends WebPage {
 	@SuppressWarnings("rawtypes")
 	private Form form = null;
 	private IModel<Persona> loadablePersonaEntity;	
-	//---------------------------------------------------------------------------------------------------------------------------------------------------	
+	//---------------------------------------------------------------------------------------------------------------------------------------------------
+	private FeedbackPanel feedbackPanel = null;
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public HomePage(final PageParameters parameters) {
@@ -103,7 +107,30 @@ public class HomePage extends WebPage {
 						super.onSubmit(target, form);
 						System.err.println("Método 'onSubmit()' del componente submitFormButton");
 						System.err.println("Objeto Persona:" + loadablePersonaEntity.getObject().toString());
+						PersonaDAO personaDAO = new HibernatePersonaDAO();
+						try
+						{
+							personaDAO.insert(loadablePersonaEntity.getObject());
+						}
+						catch(Exception ex)
+						{
+							System.err.println("Error en 'onSubmit()' : " + ex.getMessage());
+						}
+						finally 
+						{
+							
+							target.add(feedbackPanel);						
+						}
 					}
+
+					@Override
+					protected void onError(AjaxRequestTarget target, Form<?> form) {
+						// TODO Auto-generated method stub
+						super.onError(target, form);
+						target.add(feedbackPanel);
+					}
+					
+					
 					
 				};
 		
@@ -140,6 +167,17 @@ public class HomePage extends WebPage {
 		form.add(numeroDeTelefono);
 		form.add(submitFormButton);
 		add(form);
+		
+		//---------------------------------------------------------------------------------------------------------------------------------------------------	
+		
+		
+		
+		//---------------------------------------------------------------------------------------------------------------------------------------------------
+		feedbackPanel = new FeedbackPanel("feedbackPanel");
+		feedbackPanel.setOutputMarkupId(true);
+		form.add(feedbackPanel);
+		//---------------------------------------------------------------------------------------------------------------------------------------------------		
+		
     }
 
 

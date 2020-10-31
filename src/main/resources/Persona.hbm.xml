@@ -15,6 +15,6 @@
 		<property name="apellidoPaterno" column="APELLIDO_PATERNO"  type="string"/>
 		<property name="apellidoMaterno" column="APELLIDO_MATERNO"  type="string"/>
 		<property name="edad" column="EDAD"  type="int"/>
-		<property name="telefono" column="TELEFONO"  type="string"/>
+		<property name="numeroDeTelefono" column="TELEFONO"  type="string"/>
 	</class>
 </hibernate-mapping>
