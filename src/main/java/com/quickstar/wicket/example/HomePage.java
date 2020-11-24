@@ -18,6 +18,13 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 
+/**
+ * Para que una clase represente una página web necesita extender de la clase WebPage
+ * o de alguna otra clase que extienda de la clase WebPage
+ * 
+ * @author Acasmol
+ *
+ */
 public class HomePage extends WebPage {
 	private static final long serialVersionUID = 1L;
 	
@@ -44,8 +51,15 @@ public class HomePage extends WebPage {
 	private Form form = null;
 	private IModel<Persona> loadablePersonaEntity;	
 	//---------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	//---------------------------------------------------------------------------------------------------------------------------------------------------	
 	private FeedbackPanel feedbackPanel = null;
 
+	
+	/**
+	 * 
+	 * @param parameters Este parámetro es un objeto que contiene los parámetros con los que fue invocada
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public HomePage(final PageParameters parameters) {
 		super(parameters);
@@ -70,13 +84,14 @@ public class HomePage extends WebPage {
 			public void onClick(AjaxRequestTarget target) {
 				// TODO Auto-generated method stub
 				contadorModel = contadorModel + 1; //Incrementamos la variable
-				contadorLabel.setDefaultModelObject(contadorModel); //Adjuntamos nuevamente la variable al componente Wicket
+				contadorLabel.setDefaultModelObject(contadorModel); //Adjuntamos nuevamente el modelo al componente Wicket
 				target.add(contadorLabel);				
 			}
 			
 			
 		};
 		
+		//Añadimos al contenedor, en este caso la página
 		add(contadorLabel);
 		add(sumarContador);
 		
@@ -118,7 +133,7 @@ public class HomePage extends WebPage {
 						}
 						finally 
 						{
-							
+							//Queremos que se actualize el FeedbackPanel, por lo que lo añadimos al AjaxRequest
 							target.add(feedbackPanel);						
 						}
 					}
@@ -127,6 +142,7 @@ public class HomePage extends WebPage {
 					protected void onError(AjaxRequestTarget target, Form<?> form) {
 						// TODO Auto-generated method stub
 						super.onError(target, form);
+						//Queremos que en caso de que ocurra un error, se actualize el FeedbackPanel, por lo que lo añadimos al AjaxRequest
 						target.add(feedbackPanel);
 					}
 					
@@ -134,6 +150,11 @@ public class HomePage extends WebPage {
 					
 				};
 		
+			
+		//Pasamos al constructor el wicket id y un objecto que extienda de LoadableDetachableModel
+		//De esta forma, al ser un LoadableDetachableModel, las propiedades del POJO envuelto dentro
+		//de este modelo, serán enlazados a los componentes 'hijos' de este form cuyo valor
+		//del wicket id sea el mismo al nombre de las propiedades del POJO
 		form = new Form("form",loadablePersonaEntity) {
 
 			/**
