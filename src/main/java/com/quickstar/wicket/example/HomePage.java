@@ -2,9 +2,9 @@ package com.quickstar.wicket.example;
 
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
-import com.quickstar.wicket.entity.dao.impl.HibernatePersonaDAO;
 import com.quickstar.wicket.example.enity.dao.PersonaDAO;
 import com.quickstar.wicket.example.entity.Persona;
+import com.quickstar.wicket.example.entity.dao.impl.HibernatePersonaDAO;
 import com.quickstar.wicket.example.entity.loadable.LoadablePersonaEntity;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;

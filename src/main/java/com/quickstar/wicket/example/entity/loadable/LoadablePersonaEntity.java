@@ -5,9 +5,9 @@ package com.quickstar.wicket.example.entity.loadable;
 
 import org.apache.wicket.model.LoadableDetachableModel;
 
-import com.quickstar.wicket.entity.dao.impl.HibernatePersonaDAO;
 import com.quickstar.wicket.example.enity.dao.PersonaDAO;
 import com.quickstar.wicket.example.entity.Persona;
+import com.quickstar.wicket.example.entity.dao.impl.HibernatePersonaDAO;
 
 /**
  * @author Acasmol

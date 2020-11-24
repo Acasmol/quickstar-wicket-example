@@ -1,14 +1,14 @@
 /**
  * 
  */
-package com.quickstar.wicket.entity.dao.impl;
+package com.quickstar.wicket.example.entity.dao.impl;
 
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import com.quickstar.wicket.database.HibernateSession;
+import com.quickstar.wicket.example.database.HibernateSession;
 import com.quickstar.wicket.example.enity.dao.PersonaDAO;
 import com.quickstar.wicket.example.entity.Persona;
 

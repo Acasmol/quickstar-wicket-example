@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.quickstar.wicket.database;
+package com.quickstar.wicket.example.database;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
